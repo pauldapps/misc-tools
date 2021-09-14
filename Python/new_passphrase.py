@@ -31,6 +31,10 @@ def new_passphrase(
 
             new_passphase(words=10)
             'july-barge-icing-trio-dish-cure-plead-fence-sage-scuba'
+
+            eff_long = "https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
+            new_passphrase(dice_rolls=5, list_url=eff_long)
+            'confident-unvaried-gravitate-utility'
         
         list:
             new_passphrase(num=3)
