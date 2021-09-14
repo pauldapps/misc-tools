@@ -23,6 +23,18 @@ def new_passphrase(
     Returns:
         str: One Passphrase
         list: Multiple Passphrases
+
+    Examples:
+        str:
+            new_passphrase()
+            'oasis-tart-bleak-gains'
+
+            new_passphase(words=10)
+            'july-barge-icing-trio-dish-cure-plead-fence-sage-scuba'
+        
+        list:
+            new_passphrase(num=3)
+            ['vegan-chest-jury-crisp', 'wool-debug-smell-purse', 'widen-boat-fog-game']        
     """
     data = (requests.get(list_url)).text.splitlines()
     eff_list = []
