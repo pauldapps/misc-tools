@@ -1,4 +1,15 @@
-def new_passphrase(words: int=4, num: int=1,seperator: str='-', dice_rolls: int=4, dice_sides: int=6, list_url: str="https://www.eff.org/files/2016/09/08/eff_short_wordlist_1.txt"):
+import random
+import requests
+from typing import Union
+
+def new_passphrase(
+    words: int=4,
+    num: int=1,
+    seperator: str='-',
+    dice_rolls: int=4,
+    dice_sides: int=6,
+    list_url: str="https://www.eff.org/files/2016/09/08/eff_short_wordlist_1.txt"
+    ) -> Union[str, list]:
     """Generates one or more secure passphrases.
 
     Args:
