@@ -13,11 +13,11 @@ def format_line_protocol(measurement: str,field: dict,tags: dict={}) -> str:
         str: Line protocol formated string ready to be pushed to InfluxDB.
 
     Examples:
-        ```
+        ``` 
         >>> measurement = 'serverroom'
         >>> tags = {'category': 'general', 'priority': 'high', 'owningParty': 'maintenace'}
         >>> field = {'humidity': 0.99} #get_sensor_humidity
-        
+
         >>> format_line_protocol(measurement,field,tags)
 
         >>> 'serverroom,category=general,priority=high,owningParty=maintenace humidity=0.99'
