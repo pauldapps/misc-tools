@@ -2,14 +2,15 @@ import random
 import requests
 from typing import Union
 
+
 def new_passphrase(
-    words: int=4,
-    num: int=1,
-    seperator: str='-',
-    dice_rolls: int=4,
-    dice_sides: int=6,
-    list_url: str="https://www.eff.org/files/2016/09/08/eff_short_wordlist_1.txt"
-    ) -> Union[str, list]:
+    words: int = 4,
+    num: int = 1,
+    seperator: str = "-",
+    dice_rolls: int = 4,
+    dice_sides: int = 6,
+    list_url: str = "https://www.eff.org/files/2016/09/08/eff_short_wordlist_1.txt",
+) -> Union[str, list]:
     """Generates one or more secure passphrases.
 
     Args:
@@ -23,42 +24,23 @@ def new_passphrase(
     Returns:
         str: One Passphrase
         list: Multiple Passphrases
-
-    Examples:
-        str:
-            new_passphrase()
-            'oasis-tart-bleak-gains'
-
-            new_passphase(words=10)
-            'july-barge-icing-trio-dish-cure-plead-fence-sage-scuba'
-
-            eff_long = "https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
-            new_passphrase(dice_rolls=5, list_url=eff_long)
-            'confident-unvaried-gravitate-utility'
-        
-        list:
-            new_passphrase(num=3)
-            ['vegan-chest-jury-crisp', 'wool-debug-smell-purse', 'widen-boat-fog-game']        
     """
     data = (requests.get(list_url)).text.splitlines()
-    eff_list = []
-    for l in data:
-        eff_list.append(l.split('\t'))
-    eff_list = dict(eff_list)
+    eff_list = dict([l.split("\t") for l in data])
     str_out = ""
     list_out = []
-    for n in range(num):
+    for _ in range(num):
         for w in range(words):
             result = ""
-            for s in range(dice_rolls):
-                result += str(random.randint(1,dice_sides))   
+            for _ in range(dice_rolls):
+                result += str(random.randint(1, dice_sides))
             if w == 0:
-                str_out += f'{eff_list[result]}'
-            else: 
-                str_out += f'{seperator}{eff_list[result]}'
+                str_out += f"{eff_list[result]}"
+            else:
+                str_out += f"{seperator}{eff_list[result]}"
         if num == 1:
             return str_out
         else:
             list_out.append(str_out)
             str_out = ""
-    return list_out  
+    return list_out
